@@ -1,0 +1,53 @@
+.wrongbackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.75);
+}
+  
+.wrongmodal {
+    position: fixed;
+    top:200px;
+    left:20%;
+    width: 31.5%;
+    height: 180px;
+    background-color:white;
+    margin-left: 200px;
+    border-radius:20px;
+}
+  
+.wrongheader {
+    background:#bf1996;
+    padding: 1rem;
+    text-align: center;
+    width:400px;
+    font-size: 20px;
+    border-radius: 10px;
+    color:white;
+}
+   
+.wrongcontent {
+    padding: 1rem;
+    font-size: 20px;
+}
+  
+.wrongbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#bf1996;
+    color: #fff;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+    margin-left: 300px;
+    cursor: pointer;
+    width:70px;
+}
+  
+  
