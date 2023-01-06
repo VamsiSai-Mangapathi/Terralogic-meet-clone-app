@@ -16,27 +16,27 @@ const ImageSlider=()=>{
         
       };
     return(
-        <div style={{width:"330px", height:"100px", marginLeft:"60%"}}>
+        <div style={{width:"330px",marginLeft:"60%"}}>
        
         <Slider {...settings}>
           <div>
            <img src={image1} alt=""></img>
            <h5><center>Get a link u can share</center></h5>
-           <div>Click New Meeting to get a link you can
+           <div style={{marginLeft:"40px"}}>Click New Meeting to get a link you can
              send to people you want to meet with
            </div>
           </div>
           <div>
           <img src={image2} alt=""></img>
           <h5><center>See everyone together</center></h5>
-          <div>To see more people at the same time, go to change
+          <div style={{marginLeft:"40px"}}>To see more people at the same time, go to change
                layout in more options menu
           </div>
           </div>
           <div>
           <img src={image3} alt=""></img>
           <h5><center>your meeting is safe</center></h5>
-          <div>No one outside your organization can join a meeting unless
+          <div style={{marginLeft:"40px"}}>No one outside your organization can join a meeting unless
                 inivited or admitted by the host
           </div>
           </div>

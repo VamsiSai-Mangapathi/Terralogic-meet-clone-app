@@ -14,7 +14,10 @@ const Button=()=>{
     };
     const closeHandler=()=>{
         setmeeting1(false);
-        history.push(`/${firepadRef.key}#init`);
+       
+        // history.push (`/${firepadRef.key}#init`)
+        history.push ("/meeting/"+`?id=${firepadRef.key}#init`)
+
     }
     
     

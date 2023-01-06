@@ -8,7 +8,7 @@ function Meeting(props){
     
     return(
         <div className='meet' onClick={props.close}>
-            <LinkIcon style={{marginTop:'5px'}} /><div><h1>Create a Instant Meeting</h1></div>
+            <LinkIcon style={{marginTop:'15px'}} /><div><h1>Create a Instant Meeting</h1></div>
         </div>
     )
 };

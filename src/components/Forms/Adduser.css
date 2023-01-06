@@ -12,27 +12,41 @@
     top: 40vh;
     left: 40%;
     width: 30%;
-    z-index: 100;
+    z-index:-1;
     overflow: hidden;
     background: white;
     border-radius: 10px;
     height: 250px;
 }
+.adduser{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+}
 
-.add h1{
+.adduser h1{
     font-size: 15px;
     font-weight: 550;
     margin-left: 20px;
-    margin-top: 20px;
-    display: flex;
+    margin-top: 30px;
+    width: 100px;
 }
 
-.add input{
+.adduser-input{
     width:100%;
     margin-top: 20px;
     height: 40px;
-    border:1px solid #bf1996;
+    border:1px solid black;
+    /* margin-left: 10px; */
     outline: none;
+}
+.adduser-input::placeholder{
+    margin-left: 10px;
+    font-size: 14px;
+    color:black;
+    padding-left: 15px;
+    font-weight: 500;
+    opacity: 80%;
 }
 
 .sbtn{
@@ -45,7 +59,7 @@
     padding: 5px;
     border-radius: 5px;
     border: none;
-    margin-top: 25px;
+    margin-top: 55px;
     margin-left: 300px;
     cursor: pointer;
 }

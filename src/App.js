@@ -40,11 +40,10 @@ function App(props) {
           screen: false,
         };
         const userStatusRef = participantRef.push({
-          userName,
           preferences: defaultPreference,
         });
         props.setUser({
-          [userStatusRef.key]: { name: userName, ...defaultPreference },
+          [userStatusRef.key]: {  ...defaultPreference },
         });
         userStatusRef.onDisconnect().remove();
       }
@@ -70,10 +69,9 @@ function App(props) {
             },
           });
         });
-        const { username: name, preferences = {} } = snap.val();
+        const {  preferences = {} } = snap.val();
         props.addParticipant({
           [snap.key]: {
-            name,
             ...preferences,
           },
         });
@@ -87,24 +85,24 @@ function App(props) {
   return (
     <div className="App">
       <Route>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login">
-          <Mainform />
-        </Route>
-        <Route path="/Registration">
-          <Registration />
-        </Route>
-        <Route path="/after">
-          <Home />
-        </Route>
-        <Route path="/:id">
-          <MainScreen />
-        </Route>
-      </Switch>
-    </Route>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login">
+            <Mainform />
+          </Route>
+          <Route path="/Registration">
+            <Registration />
+          </Route>
+          <Route path="/after">
+            <Home />
+          </Route>
+          <Route path="/:id">            
+            <MainScreen />
+          </Route>
+        </Switch>
+      </Route>
     </div>
   );
 }

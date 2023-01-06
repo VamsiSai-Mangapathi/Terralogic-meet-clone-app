@@ -31,7 +31,7 @@ function Join(props){
             <ContentCopyIcon className='icon' onClick={() => navigator.clipboard.writeText(props.url)}/>
           </div>
         </div>
-        {adduser && <Adduser closeadd={closeaddHandler} />}
+        {adduser && <Adduser closeadd={closeaddHandler} url={props.url} />}
       </div>
     );
 };

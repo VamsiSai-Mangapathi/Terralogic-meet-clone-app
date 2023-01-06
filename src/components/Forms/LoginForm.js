@@ -62,8 +62,9 @@ function LoginForm(props){
       window.localStorage.setItem("username",enteredEmail);
 
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
+        // "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
         // "http://127.0.0.1:8000/49.205.67.174/login",
+         "http://nikhil010.pythonanywhere.com/login",
         {
           method: "POST",
           body: JSON.stringify({
@@ -96,10 +97,10 @@ function LoginForm(props){
         })
         .catch((err) => {
           setwrong(err.message);
-          if (wrong === "EMAIL_NOT_FOUND") {
+          if (wrong === "User not found!") {
             setwrongemail1(true);
           }
-          if (wrong === "INVALID_PASSWORD") {
+          if (wrong === "Incorrect password!") {
             setwrongpassword1(true);
           }
         });
@@ -145,7 +146,7 @@ function LoginForm(props){
                   style={{
                     fontSize: "14px",
                     marginTop: "10px",
-                    marginLeft: "35px",
+                    marginLeft: "0px",
                   }}
                 >
                   <li

@@ -3,12 +3,13 @@
     /* position: relative; */
     width: 310px;
     margin-left: 850px;
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     margin-top: -520px;
     /* border:1px solid #bf1996; */
     display:flex;
     flex-direction: row;
+    overflow: hidden;
     /* background-image: url("assets/terralogo.jpg"); */
 }
 h5{
@@ -132,7 +133,7 @@ button:active:disabled {
     color:rgb(2, 2, 36);
     font-size:14px;
     margin-left: 75%;
-    margin-top:-16px;
+    margin-top:-34px;
     font-weight: 550;
 }
 .lins4{

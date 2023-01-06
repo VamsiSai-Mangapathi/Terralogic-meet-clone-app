@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import firepadRef from "../../server/firebase";
 import {
   faMicrophone,
   faVideo,
   faDesktop,
   faVideoSlash,
   faMicrophoneSlash,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 import "./MeetingFooter.css";
 const MeetingFooter = (props) => {
+  // const participantRef =useRef(firepadRef.child("participants"));
+  // const participantRef = firepadRef.child("participants");
   const [streamState, setStreamState] = useState({
     mic: true,
     video: false,
@@ -32,16 +36,18 @@ const MeetingFooter = (props) => {
       };
     });
   };
-
+  // const oncallend=()=>{
+  //   participantRef.current.destroy();
+  // }
   const onScreenClick = () => {
     props.onScreenClick(setScreenState);
   };
 
-  const setScreenState = (isEnabled) => {
+  const setScreenState = () => {
     setStreamState((currentState) => {
       return {
         ...currentState,
-        screen: isEnabled,
+        screen: !currentState.screen,
       };
     });
   };
@@ -64,6 +70,16 @@ const MeetingFooter = (props) => {
         />
       </div>
       <div
+        className={"meeting-icons " + (!streamState.mic ? "active" : "")}
+        data-tip={streamState.mic ? "Call End" : ""}
+        // onClick={oncallend}
+      >
+        <FontAwesomeIcon
+          icon={!streamState.mic ? faPhone : faPhone}
+          title="Mute"
+        />
+      </div>
+      <div
         className={"meeting-icons " + (!streamState.video ? "active" : "")}
         data-tip={streamState.video ? "Hide Video" : "Show Video"}
         onClick={onVideoClick}
@@ -72,8 +88,10 @@ const MeetingFooter = (props) => {
       </div>
       <div
         className="meeting-icons"
-        data-tip="Share Screen"
+        // data-tip="Share Screen"
+        data-tip={!streamState.screen ? "Share Screen" : "Stop Sharing"}
         onClick={onScreenClick}
+        // onClick={setScreenState}
         disabled={streamState.screen}
       >
         <FontAwesomeIcon icon={faDesktop} />

@@ -7,6 +7,7 @@ const Participants = (props) => {
   const videoRef = useRef(null);
   let participantKey = Object.keys(props.participants);
   useEffect(() => {
+     
     if (videoRef.current) {
       videoRef.current.srcObject = props.stream;
       videoRef.current.muted = true;
@@ -61,11 +62,11 @@ const Participants = (props) => {
         currentParticipant={currentParticipant}
         curentIndex={curentIndex}
         hideVideo={screenPresenter && screenPresenter !== element}
-        showAvatar={
-          !currentParticipant.video &&
-          !currentParticipant.screen &&
-          currentParticipant.name
-        }
+        // showAvatar={
+        //   !currentParticipant.video &&
+        //   !currentParticipant.screen &&
+        //   currentParticipant.name
+        // }
       />
     );
   });
@@ -84,7 +85,7 @@ const Participants = (props) => {
         curentIndex={participantKey.length}
         hideVideo={screenPresenter && !currentUser.screen}
         videoRef={videoRef}
-        showAvatar={currentUser && !currentUser.video && !currentUser.screen}
+        // showAvatar={currentUser && !currentUser.video && !currentUser.screen}
         currentUser={true}
       />
     </div>

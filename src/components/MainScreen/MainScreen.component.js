@@ -6,21 +6,50 @@ import { connect } from "react-redux";
 import { setMainStream, updateUser } from "../../store/actioncreator";
 import Join from "./../Kyathi/Join";
 import firepadRef from "../../server/firebase";
+import {useHistory} from "react-router-dom";
+import Welcome from "./Welcome";
 const MainScreen = (props) => {
   const isAdmin = window.location.hash === '#init' ? true : false;
-  const copy= `${window.location.origin}${`/?id=`}${firepadRef.key}`;
+  const copy= `${window.location.origin}${`/login/?id=`}${firepadRef.key}`;
   const[join,setJoin]=useState();
   window.localStorage.setItem("url",copy);
+  const history=useHistory();
+  // const [welcome,setwelcome]=useState(window.localStorage.getItem("refresh"));
   useEffect(()=>{
+    
     if(isAdmin){
      setJoin(true);
     }
+    // else{
+    //   setwelcome(true);
+    // }
   },[]);
 
-
-const closejoinHandler=()=>{
+  // history.go(1);
+  // function reloadPage() {
+  //   // The last "domLoading" Time //
+  //   var currentDocumentTimestamp =
+  //   new Date(performance.timing.domLoading).getTime();
+  //   // Current Time //
+  //   var now = Date.now();
+  //   // Ten Seconds //
+  //   var tenSec = 10 * 1000;
+  //   // Plus Ten Seconds //
+  //   var plusTenSec = currentDocumentTimestamp + tenSec;
+  //   if (now > plusTenSec) {
+  //   window.location.reload();
+  //   } else {}
+  // }
+  // reloadPage();
+  const closejoinHandler=()=>{
     setJoin(false);
-}
+  }
+
+  // const closewelcomehandler=()=>{
+  //   window.location.reload(true);
+  //   window.localStorage.setItem("refresh",false);
+  //   setwelcome(false);
+  // }
   const participantRef = useRef(props.participants);
 
   const onMicClick = (micEnabled) => {
@@ -91,11 +120,13 @@ const closejoinHandler=()=>{
     <div className="wrapper">
       <div className="main-screen">
         {join && <Join onclose={closejoinHandler} url={copy} />}
+        {/* {welcome && <Welcome onclosewelcome={closewelcomehandler} /> } */}
         <Participants />
       </div>
 
       <div className="footer">
         <MeetingFooter
+          onScreenClickend={onScreenShareEnd}
           onScreenClick={onScreenClick}
           onMicClick={onMicClick}
           onVideoClick={onVideoClick}

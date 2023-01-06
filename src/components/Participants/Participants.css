@@ -4,6 +4,15 @@
   grid-gap: 20px;
   height: 85vh;
   padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  }
+  ::-webkit-scrollbar{
+    width:10px;
+    background:black;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: gray;
   }
 
 .participants img{

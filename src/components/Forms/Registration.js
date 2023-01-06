@@ -93,8 +93,9 @@ function Registration(props){
 
     if(enteredEmail.includes("@terralogic.com")){
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
+        // "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
         // "http://127.0.0.1:8000/register",
+        "http://nikhil010.pythonanywhere.com/register",
         {
           method: "POST",
           body: JSON.stringify({
@@ -118,7 +119,7 @@ function Registration(props){
             }
             setRmessage(false);
             seterrorregister(errorMessage);
-            if(errorregister === "EMAIL_EXISTS"){
+            if(errorregister === "user with this email already exists."){
               setwrongregister(true);
             }
           });
@@ -189,7 +190,7 @@ function Registration(props){
                   style={{
                     fontSize: "14px",
                     marginTop: "10px",
-                    marginLeft: "35px",
+                    marginLeft: "0px",
                   }}
                 >
                   <li
@@ -256,7 +257,7 @@ function Registration(props){
                   style={{
                     fontSize: "14px",
                     marginTop: "10px",
-                    marginLeft: "35px",
+                    marginLeft: "0px",
                   }}
                 >
                   <li

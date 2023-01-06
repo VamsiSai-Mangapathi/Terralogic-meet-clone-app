@@ -1,27 +1,29 @@
 import './Adduser.css';
-import React,{useRef,useEffect} from 'react';
+import React,{useRef,useEffect,useState} from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
-
+import Mailsent from '../messages/Mailsent';
 function Adduser(props){
+    const [mailsent,setmailsent]=useState();
     const add=useRef();
     useEffect(()=>{
         add.current.focus();
     },[])
-
+    const link=props.url;
+    console.log(link);
     const adduserHandler=(event)=>{
       event.preventDefault();
   
       const entereduserEmail = add.current.value;
       
       
-      
       fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI',
-        // "http://127.0.0.1:8000/49.205.67.174/login",
+        // 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI',
+        "http://nikhil010.pythonanywhere.com/meeting/",
         {
           method: "POST",
           body: JSON.stringify({
            email: entereduserEmail,
+           Link:link,
            returnSecureToken: true,
           }),
           headers: 
@@ -31,7 +33,7 @@ function Adduser(props){
         })
         .then((res) => {
           if (res.ok) {
-            return res.json();
+            setmailsent(true);
           } else {
             return res.json().then((data) => {
               let errorMessage = "Authentication failed!";
@@ -56,29 +58,31 @@ function Adduser(props){
         //   }
       });
     }
+    const closemailhandler=()=>{
+      setmailsent(false);
+    }
     return (
       <div className="addbackdrop">
         <div className="add">
           <form onSubmit={adduserHandler}>
-            <h1>Add People</h1>
-            <ClearIcon
-              style={{
-                marginLeft: "90%",
-                marginTop: "-50px",
-                cursor: "pointer",
-              }}
-              onClick={props.closeadd}
-            />
-            <input
-              type="email"
-              placeholder="Enter email"
-              ref={add}
-            />
+            <div className='adduser'>
+              <h1>Add People</h1>
+              <ClearIcon
+                style={{
+                  marginLeft: "240px",
+                  marginTop: "30px",
+                  cursor: "pointer",
+                }}
+                onClick={props.closeadd}
+              />
+            </div>
+            <input className='adduser-input' type="email" placeholder="Enter email" ref={add} />
             <button className="sbtn" type="submit">
               Send Mail
             </button>
           </form>
         </div>
+        {mailsent && <Mailsent closemail={closemailhandler}/>}
       </div>
     );
 }

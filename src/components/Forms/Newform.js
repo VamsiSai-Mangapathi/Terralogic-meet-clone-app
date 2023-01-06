@@ -1,4 +1,5 @@
 import './Newform.css';
+import './LoginForm.css';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import { useEffect,useRef } from 'react';

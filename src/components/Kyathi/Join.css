@@ -62,7 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #04796a;
+    /* background: #04796a; */
+    background: #bf1996;
     color: #fff;
     font-size: 17px;
     padding: 5px;
