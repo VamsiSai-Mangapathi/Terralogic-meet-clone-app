@@ -63,7 +63,6 @@ function LoginForm(props){
 
       fetch(
         // "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
-        // "http://127.0.0.1:8000/49.205.67.174/login",
          "http://nikhil010.pythonanywhere.com/login",
         {
           method: "POST",
@@ -80,30 +79,18 @@ function LoginForm(props){
         .then((res) => {
           if (res.ok) {
             history.push("/after");
-            return res.json();
           } else {
             return res.json().then((data) => {
-              let errorMessage = "Authentication failed!";
-              if (data && data.error && data.error.message) {
-                errorMessage = data.error.message;
+              console.log(res);
+              if(res.status === 401){
+                setwrongemail1(true)
               }
-
-              throw new Error(errorMessage);
+              if(res.status === 404){
+                setwrongpassword1(true);
+              }
             });
           }
         })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          setwrong(err.message);
-          if (wrong === "User not found!") {
-            setwrongemail1(true);
-          }
-          if (wrong === "Incorrect password!") {
-            setwrongpassword1(true);
-          }
-        });
     };
   useEffect(() => {
     emailInputRef.current.focus();

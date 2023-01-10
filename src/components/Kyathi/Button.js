@@ -8,19 +8,13 @@ import firepadRef from "./../../server/firebase";
 const Button=()=>{
     const[meeting,setmeeting1]=useState();
     const history=useHistory();
-    const meetingHandler=()=>{
+    const meetingHandler=()=>{ 
         setmeeting1(true);
-        
     };
     const closeHandler=()=>{
         setmeeting1(false);
-       
-        // history.push (`/${firepadRef.key}#init`)
-        history.push ("/meeting/"+`?id=${firepadRef.key}#init`)
-
+        history.push ("/meeting/"+`?id=${firepadRef.key}#init`);
     }
-    
-    
     
     return(
         <div>

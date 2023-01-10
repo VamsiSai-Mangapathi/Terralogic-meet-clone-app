@@ -94,7 +94,6 @@ function Registration(props){
     if(enteredEmail.includes("@terralogic.com")){
       fetch(
         // "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBERMyCRpzcfn_xn0o7_b464pVhJI2Y1RI",
-        // "http://127.0.0.1:8000/register",
         "http://nikhil010.pythonanywhere.com/register",
         {
           method: "POST",
@@ -113,13 +112,8 @@ function Registration(props){
           setRmessage(true);
         } else {
           return res.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            setRmessage(false);
-            seterrorregister(errorMessage);
-            if(errorregister === "user with this email already exists."){
+            console.log(res)
+            if(res.status === 400 ){
               setwrongregister(true);
             }
           });

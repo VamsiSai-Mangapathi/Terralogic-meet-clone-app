@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useRef} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import firepadRef from "../../server/firebase";
+import firepadRef, {db,userName} from "../../server/firebase";
+import { useHistory } from "react-router-dom";
 import {
   faMicrophone,
   faVideo,
@@ -12,8 +13,11 @@ import {
 import ReactTooltip from "react-tooltip";
 import "./MeetingFooter.css";
 const MeetingFooter = (props) => {
-  // const participantRef =useRef(firepadRef.child("participants"));
-  // const participantRef = firepadRef.child("participants");
+  const history=useHistory();
+  const participantRef = firepadRef.child("participants");
+  const connectedRef = db.database().ref(".info/connected");
+  // let participantKey = Object.keys(props.participants);
+
   const [streamState, setStreamState] = useState({
     mic: true,
     video: false,
@@ -36,9 +40,7 @@ const MeetingFooter = (props) => {
       };
     });
   };
-  // const oncallend=()=>{
-  //   participantRef.current.destroy();
-  // }
+  
   const onScreenClick = () => {
     props.onScreenClick(setScreenState);
   };
@@ -57,6 +59,9 @@ const MeetingFooter = (props) => {
   useEffect(() => {
     props.onVideoClick(streamState.video);
   }, [streamState.video]);
+  
+
+  
   return (
     <div className="meeting-footer">
       <div
@@ -69,14 +74,14 @@ const MeetingFooter = (props) => {
           title="Mute"
         />
       </div>
+    
       <div
-        className={"meeting-icons " + (!streamState.mic ? "active" : "")}
+        className={"meeting-icons " }
         data-tip={streamState.mic ? "Call End" : ""}
-        // onClick={oncallend}
+        onClick={props.onCallend}
       >
         <FontAwesomeIcon
-          icon={!streamState.mic ? faPhone : faPhone}
-          title="Mute"
+          icon={faPhone}
         />
       </div>
       <div

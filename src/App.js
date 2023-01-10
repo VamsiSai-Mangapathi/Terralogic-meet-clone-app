@@ -2,10 +2,11 @@ import Adminpage from './components/UserVideo/Adminpage';
 import MainScreen from "./components/MainScreen/MainScreen.component"
 import Registration from './components/Forms/Registration';
 import {Route,Redirect,Switch} from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import Home from './components/Kyathi/Home';
 import Mainform from './components/Forms/Mainform';
 import firepadRef, {db,userName} from "./server/firebase";
+import { useHistory } from 'react-router-dom';
 import "./App.css";
 import { useEffect } from "react";
 import {
@@ -19,6 +20,8 @@ import { connect } from "react-redux";
 
 function App(props) {
   // const userName=window.localStorage.getItem("username");
+  const history=useHistory();
+  // const [refresh,setrefresh]=useState(false);
   const getUserStream = async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
@@ -49,6 +52,7 @@ function App(props) {
       }
     });
   }, []);
+ 
 
   const connectedRef = db.database().ref(".info/connected");
   const participantRef = firepadRef.child("participants");
@@ -81,7 +85,23 @@ function App(props) {
       });
     }
   }, [isStreamSet, isUserSet]);
-
+  const endCall =()=>{
+    
+    connectedRef.on("value", (snap) => {
+      if (snap.val()) {
+        participantRef.remove();
+        history.push("/login");
+        window.location.reload();
+        // setrefresh(true);
+      }
+   });
+  }
+  // useEffect(()=>{
+  //   if(refresh){
+  //     window.location.reload();
+  //   }
+  // },[]);
+  
   return (
     <div className="App">
       <Route>
@@ -99,7 +119,7 @@ function App(props) {
             <Home />
           </Route>
           <Route path="/:id">            
-            <MainScreen />
+            <MainScreen oncallend={endCall}/>
           </Route>
         </Switch>
       </Route>

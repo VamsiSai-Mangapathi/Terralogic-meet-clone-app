@@ -1,6 +1,5 @@
 .mainform{
-    /* background-color: rgb(82, 76, 76); */
-    /* position: relative; */
+    
     width: 310px;
     margin-left: 850px;
     height: 500px;
@@ -95,7 +94,7 @@ h5{
     margin-left: 15px;
     height: 25px;
     color: white;
-    margin-top: 30px;
+    margin-top: 0px;
     height: 35px;
     cursor: pointer;
 }
